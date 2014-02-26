@@ -14,6 +14,14 @@ $app->get('/', function () use ($app) {
 ->bind('homepage')
 ;
 
+$app->get('/signup', function () use ($app) {
+    return $app['twig']->render('signup.twig', array());
+});
+
+$app->post('/createUser', function () use ($app) {
+    return (new \HotspotMap\Controller\UserController())->createUserAction($app['request'], $app);
+});
+
 $app->error(function (\Exception $e, $code) use ($app) {
     if ($app['debug']) {
         return;

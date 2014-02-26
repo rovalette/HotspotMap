@@ -1,0 +1,48 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+    <div class="container" xmlns="http://www.w3.org/1999/html">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Please Sign up</h3>
+                    </div>
+                    <form method="post" action="/createUser">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <input class="form-control" type="text"
+                                       placeholder="First Name" name="firstname" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text"
+                                       placeholder="Last Name" name="lastname">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text"
+                                       placeholder="Choose your user name" name="username">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="email"
+                                       placeholder="E-mail" name="email">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="password"
+                                       placeholder="Choose your password" name="password">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="password"
+                                       placeholder="Retype your password" name="password2">
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <button class="btn btn-lg btn-success btn-block" type="submit">Sign up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
