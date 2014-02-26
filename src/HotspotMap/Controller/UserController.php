@@ -9,10 +9,16 @@
 namespace HotspotMap\Controller;
 
 
+use HotspotMap\Repository\UserRepository;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
 class UserController {
+
+    /**
+     * @var UserRepository
+     */
+    protected $repository;
 
     public function createUserAction(Request $request, Application $app)
     {
