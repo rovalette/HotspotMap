@@ -23,7 +23,7 @@
         "symfony/validator": "~2.3"
     },
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-0": { "HotspotMap": "src/" }
     },
     "extra": {
         "branch-alias": {
