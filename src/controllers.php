@@ -18,9 +18,7 @@ $app->get('/signup', function () use ($app) {
     return $app['twig']->render('signup.twig', array());
 });
 
-$app->post('/createUser', function () use ($app) {
-    return (new \HotspotMap\Controller\UserController())->createUserAction($app['request'], $app);
-});
+$app->post('/createUser', 'HotspotMap\Controller\UserController::createUserAction');
 
 $app->error(function (\Exception $e, $code) use ($app) {
     if ($app['debug']) {
