@@ -17,4 +17,11 @@ $app['twig'] = $app->share($app->extend('twig', function($twig, $app) {
     return $twig;
 }));
 
+$app->register(new DerAlex\Silex\YamlConfigServiceProvider(__DIR__ . '/settings.yml'));
+$app->register(new \Silex\Provider\DoctrineServiceProvider(), array(
+    'db.options' => $app['config']['database']
+));
+
+$app->register(new \Silex\Provider\SessionServiceProvider());
+
 return $app;

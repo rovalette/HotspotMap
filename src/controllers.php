@@ -24,6 +24,7 @@ $app->get('/login', function () use ($app) {
 
 $app->post('/createUser', 'HotspotMap\Controller\UserController::createUserAction');
 $app->post('/doLogin', 'HotspotMap\Controller\UserController::doLogin');
+$app->get('/logout', 'HotspotMap\Controller\UserController::doLogout');
 
 $app->error(function (\Exception $e, $code) use ($app) {
     if ($app['debug']) {
@@ -38,5 +39,7 @@ $app->error(function (\Exception $e, $code) use ($app) {
         'errors/default.twig',
     );
 
-    return new Response($app['twig']->resolveTemplate($templates)->render(array('code' => $code)), $code);
+    return new Response($app['twig']->resolveTemplate($templates)->render(array(
+        'code' => $code,
+    )), $code);
 });

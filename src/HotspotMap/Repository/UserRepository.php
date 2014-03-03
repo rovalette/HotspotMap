@@ -119,4 +119,60 @@ class UserRepository implements RepositoryInterface {
 
         return $users;
     }
+
+    /**
+     * @param string $username
+     * @return User|null
+     */
+    public function findOneByUserName($username)
+    {
+        $query = 'SELECT * FROM users WHERE username = :username';
+
+        $result = $this->con->executeFetchQuery($query, array(
+            'username' => $username
+        ));
+
+        if (empty($result))
+        {
+            return null;
+        }
+
+        $user = new User(
+            $result['firstname'],
+            $result['lastname'],
+            $result['username'],
+            $result['password'],
+            $result['email'],
+            $result['id']);
+
+        return $user;
+    }
+
+    /**
+     * @param string $email
+     * @return User|null
+     */
+    public function findOneByEmail($email)
+    {
+        $query = 'SELECT * FROM users WHERE email = :email';
+
+        $result = $this->con->executeFetchQuery($query, array(
+            'email' => $email
+        ));
+
+        if (empty($result))
+        {
+            return null;
+        }
+
+        $user = new User(
+            $result['firstname'],
+            $result['lastname'],
+            $result['username'],
+            $result['password'],
+            $result['email'],
+            $result['id']);
+
+        return $user;
+    }
 }

@@ -36,12 +36,19 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    {% if not app.session.get('user') %}
                     <li>
                         <a href="/signup">Sign up</a>
                     </li>
                     <li>
                         <a href="/login">Login</a>
                     </li>
+                    {% endif %}
+                    {% if app.session.get('user') %}
+                        <li>
+                            <a href="/logout">Logout</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

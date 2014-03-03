@@ -1,0 +1,6 @@
+database:
+  system: mysql
+  host: localhost
+  dbname: hotspotmap
+  user: root
+  password: root
