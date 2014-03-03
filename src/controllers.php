@@ -18,7 +18,12 @@ $app->get('/signup', function () use ($app) {
     return $app['twig']->render('signup.twig', array());
 });
 
+$app->get('/login', function () use ($app) {
+    return $app['twig']->render('login.twig', array());
+});
+
 $app->post('/createUser', 'HotspotMap\Controller\UserController::createUserAction');
+$app->post('/doLogin', 'HotspotMap\Controller\UserController::doLogin');
 
 $app->error(function (\Exception $e, $code) use ($app) {
     if ($app['debug']) {
