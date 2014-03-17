@@ -1,5 +1,27 @@
 {% extends "layout.twig" %}
 
 {% block content %}
-    Welcome to your new Silex Application! {{ username }}
+    <div class="container">
+        <h1 class="page-header">HotspotMap</h1>
+        {% if hotspots|length > 0 %}
+            <ul>
+                {% for hotspot in hotspots %}
+                    <div class="jumbotron">
+                        <h4>{{ hotspot.name }}</h4>
+                        Address : {{ hotspot.address }}<br>
+                        {% if hotspot.hasPlugs == true %}
+                            With plugs<br>
+                        {% endif %}
+                        {% if hotspot.hasCoffee == true %}
+                            With coffee<br>
+                        {% endif %}
+                        {% if hotspot.hasWifi == true %}
+                            With Wifi<br>
+                        {% endif %}
+                        Added on {{ hotspot.date }}.
+                    </div>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
 {% endblock %}

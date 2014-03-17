@@ -11,6 +11,7 @@ namespace HotspotMap\Controller;
 
 use HotspotMap\Entity\User;
 use HotspotMap\Repository\Connection;
+use HotspotMap\Repository\HotspotRepository;
 use HotspotMap\Repository\UserRepository;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,12 +24,18 @@ class UserController {
      */
     protected $userRepository;
 
+    /**
+     * @var HotspotRepository
+     */
+    protected $hotspotRepository;
+
     protected function initConnection(Application $app)
     {
         $dsn = $app['db.options']['system'].':host='.$app['db.options']['host'].';dbname='.$app['db.options']['dbname'];
 
         $con = new Connection($dsn, $app['db.options']['user'], $app['db.options']['password']);
         $this->userRepository = new UserRepository($con);
+        $this->hotspotRepository = new HotspotRepository($con);
     }
 
     public function createUserAction(Request $request, Application $app)
@@ -99,8 +106,10 @@ class UserController {
             ));
         }
 
+        $hotspots = $this->hotspotRepository->findAll();
         return $app['twig']->render('success.twig', array(
             'message' => 'Well done '.$username.' ! Your account has been created.',
+            'hotspots' => $hotspots,
         ));
     }
 
@@ -134,16 +143,21 @@ class UserController {
             'id' => $user->id
         ));
 
+        $hotspots = $this->hotspotRepository->findAll();
         return $app['twig']->render('success.twig', array(
             'message' => 'Well done '.$user->userName.' ! You are successfully logged in !',
+            'hotspots' => $hotspots,
         ));
     }
 
     public function doLogout(Request $request, Application $app)
     {
         $app['session']->invalidate();
+        $this->initConnection($app);
+        $hotspots = $this->hotspotRepository->findAll();
         return $app['twig']->render('success.twig', array(
             'message' => 'Well done ! You are successfully logged out !',
+            'hotspots' => $hotspots,
         ));
     }
 } 

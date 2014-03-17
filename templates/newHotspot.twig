@@ -1,0 +1,41 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Create a new Hotspot</h3>
+                    </div>
+                    <form method="post" action="/createHotspot">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <input class="form-control" type="text"
+                                       placeholder="Name" name="name" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text"
+                                       placeholder="Address" name="address">
+                            </div>
+                            <div class="form-group">
+                                <label><input class="form-horizontal" type="checkbox" name="hasplugs">Plugs</label>
+                            </div>
+                            <div class="form-group">
+                                <label><input class="form-horizontal" type="checkbox" name="hascoffee">Coffee</label>
+                            </div>
+                            <div class="form-group">
+                                <label><input class="form-horizontal" type="checkbox" name="haswifi">Wifi</label>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <button class="btn btn-lg btn-success btn-block" type="submit">Create Hotspot</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
